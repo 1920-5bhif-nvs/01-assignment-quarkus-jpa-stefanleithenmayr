@@ -1,15 +1,9 @@
 package at.htl.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import javax.persistence.*;
-import javax.xml.bind.annotation.XmlRootElement;
 import java.time.LocalDate;
 
 @Entity
-@XmlRootElement
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @NamedQueries({
         @NamedQuery(name = "Car.findAll", query = "select c from Car c"),
         @NamedQuery(name = "Car.findSold", query = "select c from Car c where c.isSold = true")
@@ -23,14 +17,8 @@ public class Car {
     private boolean isSold; //Wurde das Auto bereits verkauft
     private int priceExpected; //Erwarteter Preis
 
-    @ManyToOne
+    @ManyToOne (cascade = CascadeType.ALL)
     private Model model; //Legt das Automodell fest z.B. Audi A4
-    /*@OneToOne (cascade = CascadeType.ALL)
-    private Customer from; //Wer hat das Auto dem Händler verkauft
-    @OneToOne (cascade = CascadeType.ALL)
-    private Customer to; //An wenn wird das Auto verkauft
-    @OneToOne (cascade = CascadeType.ALL)
-    private Employee seller; //Wer hat das Auto vermittelt*/
 
     public Car() {
     }
@@ -100,14 +88,6 @@ public class Car {
         this.priceExpected = priceExpected;
     }
 
-    /*public int getPriceSold() {
-        return priceSold;
-    }
-
-    public void setPriceSold(int priceSold) {
-        this.priceSold = priceSold;
-    }*/
-
     public Model getModel() {
         return model;
     }
@@ -115,28 +95,4 @@ public class Car {
     public void setModel(Model model) {
         this.model = model;
     }
-
-    /*public Customer getFrom() {
-        return from;
-    }
-
-    public void setFrom(Customer from) {
-        this.from = from;
-    }
-
-    public Customer getTo() {
-        return to;
-    }
-
-    public void setTo(Customer to) {
-        this.to = to;
-    }
-
-    public Employee getSeller() {
-        return seller;
-    }
-
-    public void setSeller(Employee seller) {
-        this.seller = seller;
-    }*/
 }

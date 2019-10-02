@@ -7,8 +7,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 import java.time.LocalDate;
 
 @Entity
-@XmlRootElement
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Trade {
 
     @Id

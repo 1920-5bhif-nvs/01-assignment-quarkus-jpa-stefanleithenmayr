@@ -1,16 +1,11 @@
 package at.htl.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import javax.persistence.Entity;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.xml.bind.annotation.XmlRootElement;
 import java.time.LocalDate;
 
 @Entity
-@XmlRootElement
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @NamedQueries({
         @NamedQuery(name = "Employee.findAll", query = "select e from Employee e"),
 })

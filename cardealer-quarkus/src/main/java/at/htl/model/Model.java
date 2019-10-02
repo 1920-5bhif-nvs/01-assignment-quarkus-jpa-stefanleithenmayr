@@ -1,15 +1,8 @@
 package at.htl.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import javax.persistence.*;
-import javax.xml.bind.annotation.XmlRootElement;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
-@XmlRootElement
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Model {
 
     @Id
@@ -19,18 +12,13 @@ public class Model {
     private String brand;
     private String model;
 
-    @OneToMany (mappedBy = "model", cascade = CascadeType.ALL)
-    private List<Car> cars;
-
     //region Constructor
     public Model() {
-        this.cars = new ArrayList<>();
     }
 
     public Model(String brand, String model) {
         this.brand = brand;
         this.model = model;
-        this.cars = new ArrayList<>();
     }
     //endregion
 
@@ -53,14 +41,6 @@ public class Model {
 
     public void setModel(String model) {
         this.model = model;
-    }
-
-    public List<Car> getCars() {
-        return cars;
-    }
-
-    public void setCars(List<Car> cars) {
-        this.cars = cars;
     }
 
     //endregion
